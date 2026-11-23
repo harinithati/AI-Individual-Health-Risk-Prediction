@@ -10,7 +10,7 @@ st.set_page_config(
 )
 
 # Load trained model
-bundle = joblib.load("HWRPA_Model.pkl")
+
 
 models = bundle["models"]
 weights = bundle["weights"]
