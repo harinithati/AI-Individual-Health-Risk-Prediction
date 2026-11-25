@@ -9,7 +9,36 @@ st.set_page_config(
     page_icon="🩺",
     layout="wide"
 )
+import os
+import hashlib
+import streamlit as st
+import sklearn
+import joblib
+import sys
 
+MODEL_PATH = "HWRPA_Model.pkl"
+
+st.write("### Model Diagnostic Information")
+
+st.write("Python version:", sys.version)
+st.write("Scikit-learn version:", sklearn.__version__)
+st.write("Joblib version:", joblib.__version__)
+
+if os.path.exists(MODEL_PATH):
+
+    with open(MODEL_PATH, "rb") as f:
+        model_bytes = f.read()
+
+    st.write("Model file size:", len(model_bytes))
+    st.write("Model header:", repr(model_bytes[:16]))
+    st.write(
+        "Model SHA256:",
+        hashlib.sha256(model_bytes).hexdigest()
+    )
+
+else:
+    st.error("HWRPA_Model.pkl not found!")
+    st.stop()
 # Load trained model
 bundle = joblib.load("HWRPA_Model.pkl")
 
