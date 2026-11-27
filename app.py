@@ -1,8 +1,12 @@
 
-import streamlit as st
-import pandas as pd
-import numpy as np
+import os
+import sys
 import joblib
+import streamlit as st
+import numpy as np
+import pandas as pd
+import sklearn
+import matplotlib.pyplot as plt
 
 st.set_page_config(
     page_title="AI Health Risk Prediction",
